@@ -48,7 +48,7 @@ class Database {
   private url: string;
 
   constructor() {
-    this.url = `mongodb://${env.url}/${env.db}`;
+    this.url = `mongodb://${env.url}/${env.db}?directConnection=true`;
   }
 
   async connect(): Promise<void> {
