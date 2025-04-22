@@ -3,6 +3,25 @@ import Joi from "joi";
 import ora from "ora";
 import moment from "moment-timezone";
 
+
+
+// index.ts
+import { connectToDB } from "./db";
+
+async function main() {
+  const db = await connectToDB();
+
+  // Example: read from a collection
+  const collection = db.collection("example");
+  const docs = await collection.find({}).toArray();
+  console.log("📄 Documents:", docs);
+}
+
+main().catch((err) => {
+  console.error("❌ App crashed", err);
+});
+
+
 // Configs
 export type IEnv = {
   url: string;
