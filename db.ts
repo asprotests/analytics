@@ -1,7 +1,7 @@
 // db.ts
 import { MongoClient, Db } from "mongodb";
 
-const uri = process.env.MONGO_URI || "mongodb://localhost:27017/analytics";
+const uri = process.env.MONGO_URI || "mongodb://localhost:27017/tabsera";
 
 const client = new MongoClient(uri);
 let db: Db;
