@@ -1,0 +1,20 @@
+---
+version: '3.8'
+networks:
+  tabsera:
+services:
+  analytics:
+    image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '5'
+    environment:
+      - TZ=Africa/Mogadishu
+      - MONGO_URL=mongo:27017
+      - MONGO_DB=tabsera
+      - DAYS_AGO_TO_REPORT=${DAYS_AGO_TO_REPORT}
+    volumes:
+      - /home/ubuntu/tabsera/backend/analytics/files:/usr/src/app/files/
+    networks: [tabsera]

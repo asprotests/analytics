@@ -1,0 +1,17 @@
+{
+  "name": "analytics",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "joi": "^17.13.3",
+    "moment-timezone": "^0.5.47",
+    "mongoose": "^8.10.1",
+    "ora": "^8.2.0"
+  }
+}

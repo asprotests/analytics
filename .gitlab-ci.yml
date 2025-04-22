@@ -1,0 +1,25 @@
+---
+stages: [build, deploy]
+variables:
+  TAG: ${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}
+build-job:
+  stage: build
+  before_script:
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
+  script:
+    - echo "Building the docker image..."
+    - docker build -t "$CI_REGISTRY_IMAGE:$TAG" .
+    - echo "Building complete."
+    - echo "Pushing image to registry..."
+    - docker push "$CI_REGISTRY_IMAGE:$TAG"
+    - echo "Pushing complete."
+  tags: [prod]
+deploy-job:
+  stage: deploy
+  before_script:
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
+  script:
+    - echo "Deploying Analytics service..."
+    - docker-compose -f ./docker-compose.yml -p tabsera up -d
+    - echo "Service successfully deployed."
+  tags: [prod]
