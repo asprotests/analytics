@@ -9,6 +9,7 @@ let db: Db;
 export async function connectToDB(): Promise<Db> {
   if (!db) {
     await client.connect();
+    console.log("Mongo URI:", process.env.MONGO_URI);
     console.log("✅ Connected to MongoDB");
     db = client.db(); // default to 'analytics'
   }
