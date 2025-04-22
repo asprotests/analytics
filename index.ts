@@ -794,3 +794,4 @@ const yesterdateDate = `${day}-${month}-${year}`;
 await Bun.write(`./files/data-${yesterdateDate}.json`, data);
 
 console.log("Done");
+process.exit(0);
